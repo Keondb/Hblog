@@ -1,3 +1,9 @@
-body {
-    /* background-color: blue; */
+.index {
+    background-color: blue;
+    width: 100%;
+}
+
+.index .head {
+    background-color: burlywood;
+    height: 150px;
 }

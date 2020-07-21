@@ -7,7 +7,11 @@ Vue.use(VueRouter);
 const routes = [{
         path: "/",
         name: "index",
-        component: index
+        component: index,
+        meta: {
+            title: '发展历史'
+        }
+
     },
     {
         path: "/about",
