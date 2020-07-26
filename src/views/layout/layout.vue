@@ -1,17 +1,24 @@
 <template>
   <div class="layout">
-    <div id="head">
-      <div id="head_width">
-        <router-link to="/">
-          <i class="iconfont icon-homefill"></i>
-          <span>首页</span>
-        </router-link>
-        <router-link to="/about">
-          <i class="iconfont icon-peoplefill"></i>
-          <span>我的</span>
-        </router-link>
-      </div>
-    </div>
+    <el-container>
+      <el-header style="height:100px">
+        <div id="head">
+          <div id="head_width">
+            <router-link to="/">
+              <i class="iconfont icon-homefill"></i>
+              <span>首页</span>
+            </router-link>
+            <router-link to="/about">
+              <i class="iconfont icon-peoplefill"></i>
+              <span>我的</span>
+            </router-link>
+          </div>
+        </div>
+      </el-header>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
@@ -44,8 +51,8 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  &.router-link-exact-active {
-  }
+  /* &.router-link-exact-active {
+  } */
 }
 #head #head_width a:hover {
   font-weight: bold;
