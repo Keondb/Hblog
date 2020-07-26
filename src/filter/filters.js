@@ -57,12 +57,12 @@ export const normalTime = (time, type) => {
     字数限制
      */
 export const wordLimit = (res) => {
-    let nums = res.length;
-    let cont;
-    if (nums > 20) {
-        cont = nums.substring(0, 19) + '...';
+    var nums = res.length;
+    var cont;
+    if (nums > 50) {
+        cont = res.substr(0, 50) + '...';
     } else {
-        cont = nums;
+        cont = res;
     }
     return cont;
 }
