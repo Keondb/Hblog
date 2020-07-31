@@ -8,7 +8,11 @@
               <i class="iconfont icon-homefill"></i>
               <span>首页</span>
             </router-link>
-            <router-link to="/about">
+            <router-link to="/login" v-if="loginhome == 0">
+              <i class="iconfont icon-peoplefill"></i>
+              <span>登录</span>
+            </router-link>
+            <router-link to="/about" v-if="loginhome == 1">
               <i class="iconfont icon-peoplefill"></i>
               <span>我的</span>
             </router-link>
@@ -24,11 +28,22 @@
 
 <script>
 export default {
-  name: "Layout"
+  name: "Layout",
+  data() {
+    return {
+      loginhome: 0
+    };
+  }
 };
 </script>
 
 <style>
+.el-header {
+  background-color: #f9f9f9;
+}
+.el-main{
+  padding: 0;
+}
 #head {
   height: 100px;
 }
