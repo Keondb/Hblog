@@ -7,7 +7,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 
-import * as filters from './filter/filters'
+import * as filters from './filter'//过滤器
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 
 Vue.config.productionTip = false;
