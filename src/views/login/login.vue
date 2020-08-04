@@ -5,7 +5,7 @@
         <div class="title">登录</div>
         <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
           <el-form-item label="用户名">
-            {{$store.state.name}}
+            <!-- {{$store.state.name}} -->
             <el-input placeholder="请输入邮箱号" v-model="formLabelAlign.email" clearable></el-input>
           </el-form-item>
           <el-form-item label="密码">
