@@ -1,18 +1,20 @@
 <template>
-  <div class="index">
-    <div class="conts">
-      <el-card class="box-card">
-        <div class="boxs" v-for="(item,ids) in dataList" v-bind:key="ids">
-          <el-card shadow="hover" >
-            <div class="tops">
-              <a href>{{item.title}}</a>
-            </div>
-            <div>
-              <span>2000-10-10</span>
-            </div>
-          </el-card>
-        </div>
-      </el-card>
+  <div>
+    <div class="index">
+      <div class="conts">
+        <el-card class="box-card">
+          <div class="boxs" v-for="(item,ids) in dataList" v-bind:key="ids">
+            <el-card shadow="hover">
+              <div class="tops">
+                <a href>{{item.title}}</a>
+              </div>
+              <div>
+                <span>2000-10-10</span>
+              </div>
+            </el-card>
+          </div>
+        </el-card>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +55,7 @@ export default {
 };
 </script>
 
-<style>
-@import "../../assets/css/index.css";
+
+<style scoped>
+@import "./index.css";
 </style>
