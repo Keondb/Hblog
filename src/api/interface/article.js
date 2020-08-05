@@ -17,10 +17,6 @@
              params: params
          });
      },
-     // post提交
-     login (params) {
-         return axios.post(`${base.sq}/accesstoken`, qs.stringify(params));
-     }
      // 其他接口…………
  }
  

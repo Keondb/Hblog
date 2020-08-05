@@ -12,6 +12,7 @@ import * as filters from './filter'//过滤器
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 
 Vue.prototype.$api = api; // 将api挂载到vue的原型上
+
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 

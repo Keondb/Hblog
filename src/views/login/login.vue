@@ -12,7 +12,7 @@
             <el-input placeholder="请输入密码" show-password v-model="formLabelAlign.password" clearable></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">登录</el-button>
+            <el-button type="primary" @click="gologin">登录</el-button>
           </el-form-item>
         </el-form>
       </el-card>
@@ -31,11 +31,23 @@ export default {
       }
     };
   },
-  created() {
-    // this.$store.commit('edit')
-    this.$store.dispatch('aEdit',{age:15})
-  },
+  created() {},
   methods: {
+    gologin() {
+      let _this = this;
+      if (!_this.formLabelAlign.email) {
+        _this.$message.error("请输入账号");
+      }
+      if (!_this.formLabelAlign.password) {
+        _this.$message.error("请输入密码");
+      }
+      let params = _this.formLabelAlign;
+      _this.$api.common.login(params).then(
+        function (res) {
+          console.log(res)
+        }
+      );
+    },
     onSubmit() {
       this.$message.error("错了哦，这是一条错误消息");
       console.log("submit!");

@@ -2,7 +2,7 @@
   * 接口域名的管理
   */
  const base = {
-  domainName: 'http://www.hjdsm.xyz/'
+  sq: 'http://www.hjdsm.xyz/api'
 }
 
 export default base;
