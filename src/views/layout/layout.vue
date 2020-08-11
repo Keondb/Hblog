@@ -31,9 +31,16 @@ export default {
   name: "Layout",
   data() {
     return {
-      loginhome: 0
+      loginhome: 0,
+      userName:''
     };
-  }
+  },
+  created() {
+    this.userName = localStorage.getItem('user_name');
+    if(this.userName){
+      this.loginhome = 1;
+    }
+  },
 };
 </script>
 

@@ -88,17 +88,21 @@ export default {
                 }, 1000);
                 localStorage.setItem("token", datas.data.token);
                 // 将登录名使用vuex传递到Home页面
-                _this.$store.commit("handleUserName", datas.data.username);
+                _this.$store.commit("handleUserName", datas.data.name);
               } else {
                 // 登录失败，就提示错误信息
                 _this.$message({
-                  message: "登录失败,",
+                  message: "登录失败",
                   type: "error"
                 });
               }
             })
             .catch(function(res) {
-              console.log(res.status);
+              console.log(res);
+               _this.$message({
+                  message: "登录失败,"+res.data.msg,
+                  type: "error"
+                });
             });
         } else {
           console.log("error submit!!");
