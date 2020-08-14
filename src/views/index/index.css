@@ -56,12 +56,12 @@ a:focus {
     justify-content: center; */
 }
 
-.boxs .tops a {
+.boxs .tops span {
     font-size: 30px;
     position: relative;
 }
 
-.boxs .tops a::after {
+.boxs .tops span::after {
     content: '';
     display: block;
     /*开始时候下划线的宽度为100%*/
@@ -77,7 +77,7 @@ a:focus {
     transform-origin: 50% 0;
 }
 
-.boxs .tops a:hover::after {
+.boxs .tops span:hover::after {
     /*鼠标经过时还原到正常比例*/
     transform: scale3d(1, 1, 1);
 }
@@ -91,4 +91,23 @@ a:focus {
 
 .item {
     padding: 18px 0;
+}
+
+.loading span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #409eff;
+    border-left: transparent;
+    animation: zhuan 0.5s linear infinite;
+    border-radius: 50%;
+}
+
+@keyframes zhuan {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

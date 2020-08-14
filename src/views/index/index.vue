@@ -2,17 +2,24 @@
   <div>
     <div class="index">
       <div class="conts">
-        <el-card class="box-card">
-          <div class="boxs" v-for="(item,ids) in dataList" v-bind:key="ids">
+        <el-card class="box-card" v-infinite-scroll="load" infinite-scroll-disabled="disabled">
+          <div class="boxs" v-for="(item,ids) in datalists" v-bind:key="ids">
             <el-card shadow="hover">
-              <div class="tops">
-                <a href>{{item.title}}</a>
+              <div class="tops"  @click="jump(item.id)">
+                <span>{{item.titles}}</span>
               </div>
               <div>
-                <span>2000-10-10</span>
+                <span>{{item.created_at}}</span>
               </div>
             </el-card>
           </div>
+          <p v-if="loading" style="margin-top:10px;" class="loading">
+            <span></span>
+          </p>
+          <p
+            v-if="noMore"
+            style="margin-top:10px;font-size:13px;color:#ccc;text-align: center;"
+          >没有更多了</p>
         </el-card>
       </div>
     </div>
@@ -24,35 +31,54 @@ export default {
   name: "index",
   data() {
     return {
-      dataList: [
-        {
-          id: 1,
-          title: "行业数据透视",
-          text:
-            "汇聚用户购物能力、日常行为和区域经济等数据，进行数据处理分析，实现大数据计算、流计算、分布式计算等算法开发，使各行业数据多维价值得以挖掘，解决各行业面临的问题。",
-          bg: require("@/assets/img/bj.jpg")
-        },
-        {
-          id: 2,
-          title: "数字化服务商管理系统",
-          text:
-            "通过城市数据应用场景，对海量数据资源进行采集、 计算、存储、加工，形成标准化的城市的数据资产。 通过对城市业务流的分析和再造，形成城市数据平面 的核心能力层，为服务商、商家、用户提供数据服务 应用进行支撑。",
-          bg: require("@/assets/img/bj.jpg")
-        },
-        {
-          id: 3,
-          title: "城市综合数据链",
-          text:
-            "基于全面物联网连接与数字虚拟化技术，通过精准映射 、虚实交互，实现城市级的物理空间与虚拟空间之间虚 实交融、智能操控的映射关系，通过在实体世界以及数 字虚拟空间中记录、仿真、预测各行业对象全生命周期 的运行轨迹，实现系统内信息资源、物质资源的最优化 配置。",
-          bg: require("@/assets/img/bj.jpg")
-        }
-      ]
+      datalists: [],
+      count: 1, //起始页数值为0
+      loading: false,
+      totalPages: 0 //取后端返回内容的总页数
     };
   },
-  created(){
-    
+  computed: {
+    noMore() {
+      //当起始页数大于总页数时停止加载
+      return this.count >= this.totalPages;
+    },
+    disabled() {
+      return this.loading || this.noMore;
+    }
   },
-  methods: {}
+  created() {
+    this.lists();
+  },
+  methods: {
+    lists() {
+      let _this = this;
+      let page = _this.count;
+      _this.$api.article
+        .articleList(page)
+        .then(function(res) {
+          if (res.status == 200) {
+            //因为每次后端返回的都是数组，所以这边把数组拼接到一起
+            _this.datalists = _this.datalists.concat(res.data.data.data);
+            _this.totalPages = res.data.data.last_page;
+            _this.loading = false;
+          }
+        })
+        .catch(function(res) {
+          console.log(res);
+        });
+    },
+    load() {
+      //滑到底部时进行加载
+      this.loading = true;
+      setTimeout(() => {
+        this.count += 1; //页数+1
+        this.lists(); //调用接口，此时页数+1，查询下一页数据
+      }, 2000);
+    },
+    jump(value) {
+      this.$router.push({ name: "/articleDetail", params: { id: value } });
+    }
+  }
 };
 </script>
 
